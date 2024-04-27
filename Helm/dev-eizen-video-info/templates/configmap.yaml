@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-videoinfo-configmap
+data:
+  port: "8111"
+  t2v_api: 'https://t2v-dev/ez_t2v_video_generation/'

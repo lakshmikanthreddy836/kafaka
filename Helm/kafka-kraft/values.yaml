@@ -1,0 +1,41 @@
+service:
+  name: kafka-svc
+  labels:
+    app: kafka-app
+  clusterIP: None
+  broker:
+    port: 9092
+    targetPort: 9092
+  controller:
+    port: 9093
+    targetPort: 9093
+
+configMap:
+  name: kafka-config
+  replicas: "3"
+  service: kafka-svc
+  namespace: eigenmaps-dev
+  shareDir: /mnt/kafka
+  defaultReplicationFactor: "3"
+  defaultMinInsyncReplicas: "2"
+  networkThread: "3"
+  clusterId: 965df926-221c-4ed0-8792-97658fd3fc89
+
+statefulSet:
+  name: kafka
+  serviceName: kafka-svc
+  replicas: 3
+  image: 
+    id: 730335441980.dkr.ecr.ap-south-1.amazonaws.com/dev-kafka:latest
+    pullPolicy: Always
+  containerPort1: 9092
+  containerPort2: 9093
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: role
+                operator: In
+                values:
+                  - Dev-Backend-App-NG

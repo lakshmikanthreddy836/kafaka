@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-firewall-config
+data:
+  env: "dev"
+  port: "3109"
+  api_key: "77398da9-db24-4fcb-96f7-9a6e7eef8d3c"
+  video_info_url: "https://videoinfo-dev.eizen.ai/get_summary/"
+  ask_elina_url: "http://183.82.116.237:8099/second_inference/"
+  video_search_create_url: "https://videosearch-dev.eizen.ai/ez_video_search_create/"
+  video_search_show_url: "https://videosearch-dev.eizen.ai/ez_video_search_show/"
+  video_chat_create_url: "http://183.82.116.237:8099/generate_context_video/"
+  video_search_download_url: "https://videosearch-dev.eizen.ai/ez_video_search_download/"
+  video_search_save_url: "https://videosearch-dev.eizen.ai/ez_video_search_save/"
+  t2v_generator: "https://t2v-dev/ez_t2v_video_generation/"
+  bucket_name: "eizen-dev"
+  cdn_link: "cdn-dev"

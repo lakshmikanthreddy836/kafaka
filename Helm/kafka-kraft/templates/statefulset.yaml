@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.statefulSet.name }}
+  labels:
+    app: kafka-app
+spec:
+  serviceName: {{ .Values.statefulSet.serviceName }}
+  replicas: {{ .Values.statefulSet.replicas }}
+  selector:
+    matchLabels:
+      app: kafka-app
+  template:
+    metadata:
+      labels:
+        app: kafka-app
+    spec:
+      affinity:
+        {{ .Values.statefulSet.affinity | toYaml | nindent 8 }}
+      spec:
+      containers:
+        - name: kafka-container
+          image: {{ .Values.statefulSet.image.id }}
+          imagePullPolicy: {{ .Values.statefulSet.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.statefulSet.containerPort1 }}
+            - containerPort: {{ .Values.statefulSet.containerPort2 }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.configMap.name }}
+          volumeMounts:
+            - name: data
+              mountPath: /mnt/kafka
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        storageClassName: gp3
+        resources:
+          requests:
+            storage: "1Gi"
+

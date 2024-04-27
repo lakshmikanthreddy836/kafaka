@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-keycloak-configmap
+data:
+  KEYCLOAK_ADMIN: "admin"
+  KEYCLOAK_ADMIN_PASSWORD: "admin"
+  KC_PROXY: "edge"
+  jgroups.dns.query: "keycloak"
+  PROXY_ADDRESS_FORWARDING: "true"
+  KC_HEALTH_ENABLED: "true"
+  KC_METRICS_ENABLED: "true"
+  KC_HTTP_ENABLED: "true"
+  KC_HOSTNAME_URL: "https://dev-keycloak.eizen.ai"
+  KC_HOSTNAME_ADMIN_URL: "https://dev-keycloak.eizen.ai"
+  KC_DB: "mysql"
+  KC_DB_URL: "jdbc:mysql://eigenmaps-dev-db.clwq2iawuuvl.ap-south-1.rds.amazonaws.com:3336/keycloak"
+  KC_DB_URL_HOST: "eigenmaps-prod-db.clwq2iawuuvl.ap-south-1.rds.amazonaws.com"
+  KC_DB_URL_PORT: "3336"
+  KC_DB_URL_DATABASE: "keycloak"

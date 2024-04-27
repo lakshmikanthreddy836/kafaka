@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-consumer-configmap
+data:
+  bucket_name: "antzvideos"
+  bootstrap_servers: "kafka-0.kafka-svc.eigenmaps-dev.svc.cluster.local:9092"
+  metadata_max_age_ms: "120000"
+  camera_fps: "1"
+  s3_url_fps: "1"
+  youtube_fps: "0.1"
+  root_path: "images"
+  dbname: "analytics"
+  cameraCollection: "source"
+  analysticsCollection: "rawAnalytics"
+  videoCollection: "video"
+  videosDone: "videosdone"
+  modelsCollection: "model"
+  events: "events"
+  log_level: "INFO"
+  modelDetails: "apiconfig"
+  source_config: "source_config"
+  modelEndpoints: 'modelEndpoints'
+  modeltree: 'modeltree'
+  conditions: "conditions"
+  sourceid: "$SOURCEID"

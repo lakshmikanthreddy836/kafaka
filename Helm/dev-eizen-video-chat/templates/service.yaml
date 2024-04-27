@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "dev-eizen-video-chat.fullname" . }}
+  labels:
+    {{- include "dev-eizen-video-chat.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "dev-eizen-video-chat.selectorLabels" . | nindent 4 }}
